@@ -26,7 +26,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Відкриття порту
 EXPOSE 5000
 # Команда для запуску додатку
-CMD ["python3", "app/main.py"]
+CMD ["python", "app/main.py"]
 
 
 

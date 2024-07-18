@@ -1,6 +1,6 @@
 from flask import render_template
 import requests
-from app import app
+from __init__ import app
 @app.route('/')
 def index():
 	# Приклад отримання даних з API

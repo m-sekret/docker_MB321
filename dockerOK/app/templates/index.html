@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data-Spy</title>
+</head>
+<body>
+        <h1>Курс валют:</h1>
+        <p>Hryvnia - Dollar: <span id="hryvnia_dollar">0.0</span> $</p>
+        <p>Dollar - Euro: <span id="dollar_euro">0.0</span> euro</p>
+        <p>Dollar - Pound: <span id="dollar_pound">0.0</span> pound</p>
+    
+    <script>
+         async function fetchValuta1() {
+            const response = await fetch('/current_weather');
+            const data = await response.json();
+            document.getElementById('hryvnia_dollar').textContent = data.hryvnia_dollar;
+            document.getElementById('dollar_euro').textContent = data.dollar_euro;
+            document.getElementById('dollar_pound').textContent = data.dollar_pound;
+        }
+
+        setInterval(fetchValuta1, 2000);
+        fetchValuta1();
+    </script>
+</body>
+</html>
