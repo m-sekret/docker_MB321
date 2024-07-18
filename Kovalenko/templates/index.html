@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+    <html lang="en">
+    <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Currency Exchange Rates</title>
+    </head>
+    <body>
+        <h1>Курс валют:</h1>
+        <p>USD - EUR: <span id="usd_eur">0.0</span> €</p>
+        <p>USD - GBP: <span id="usd_gbp">0.0</span> £</p>
+
+        <script>
+        async function fetchExchangeRates() {
+            const response = await fetch('/update');
+            const data = await response.json();
+            document.getElementById('usd_eur').textContent = data.conversion_rates.EUR;
+            document.getElementById('usd_gbp').textContent = data.conversion_rates.GBP;
+        }
+
+        setInterval(fetchExchangeRates, 15000);
+        fetchExchangeRates();
+        </script>
+    </body>
+</html>
