@@ -1,20 +1,26 @@
-# Use the official Python image from the Docker Hub
-FROM python:3.9-slim
+# Виберіть базовий образ
+FROM python:3.11-slim
 
-# Set the working directory in the container
+# Встановіть робочу директорію
 WORKDIR /app
 
-# Copy the requirements file into the container
-COPY requirements.txt .
+# Копіюйте файли вашого проекту до контейнера
+COPY requirements.txt /app
 
-# Install the Python dependencies
+# Створіть віртуальне середовище
+RUN python -m venv venv
+
+# Активуйте віртуальне середовище і встановіть залежності
+RUN . venv/bin/activate 
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copy the rest of the application code into the container
-COPY . .
+# Копіюйте решту файлів проекту
+COPY . /app
 
-# Expose the port that the Flask app runs on
 EXPOSE 5000
 
-# Define the command to run the application
-CMD ["python", "app.py"]
+# Використовуйте віртуальне середовище для запуску додатку
+COPY start.sh /app/start.sh
+RUN chmod +x /app/start.sh
+
+CMD ["python", "/app/app.py"]

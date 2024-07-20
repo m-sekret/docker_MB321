@@ -29,4 +29,4 @@ def index():
     return render_template('index.html', USD_UAH=USD_UAH, USD_EUR=USD_EUR, USD_GBP=USD_GBP)
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host='0.0.0.0', port=5000, debug=True)
